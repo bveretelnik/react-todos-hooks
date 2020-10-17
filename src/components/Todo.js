@@ -40,7 +40,7 @@ export default function Todo({todos,completeTodo,removeTodo,updateTodo}) {
                     onClick={()=> setImmediate({id:todo.id,value:todo.text})}
                     className='edit-icon'
                     />
-                </div>
+                </div> 
             </div>
         ))
     )
