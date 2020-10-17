@@ -11,7 +11,7 @@ export default function Todo({todos,completeTodo,removeTodo,updateTodo}) {
     })
 
     const submitUpdate = value => {
-        updateTodo(edit.id,value)
+        updateTodo(edit.id, value)
         setEdit({
             id: null,
             value: ''
@@ -33,7 +33,7 @@ export default function Todo({todos,completeTodo,removeTodo,updateTodo}) {
                 </div>
                 <div className='icons'>
                     <RiCloseCircleLine 
-                        onClick={removeTodo(todo.id)}
+                        onClick={()=>removeTodo(todo.id)}
                         className='delete-icon'
                     />
                     <TiEdit 
