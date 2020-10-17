@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 
-export default function TodoForm() {
+export default function TodoForm(props) {
     const [input, setInput] = useState(props.edit ? props.edit.value : '')
 
     const inputRef = useRef(null)
@@ -33,7 +33,7 @@ export default function TodoForm() {
                 value={input}
                 onChange={handleChange}
                 name='text'
-                ref={inputRer}
+                ref={inputRef}
                 className='todo-input edit'
                 />
                 <button onClick={handleSubmit} className='todo-button edit'>
@@ -48,7 +48,7 @@ export default function TodoForm() {
                 onChange={handleChange}
                 name='text'
                 className='todo-input'
-                ref={inputRer}
+                ref={inputRef}
                 />
                 <button onClick={handleSubmit} className='todo-button'>
                     Add todo
