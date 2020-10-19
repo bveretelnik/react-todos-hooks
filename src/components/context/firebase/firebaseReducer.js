@@ -2,10 +2,13 @@ import { ADD_TODO, FETCH_TODOS, REMOVE_TODO, RENAME_TODO } from "../types"
 
 
 const handlers = {
-    [ADD_TODO]: state => ({...state}),
+    [ADD_TODO]: (state,{payload}) => ({
+        ...state,
+        todos:[...state.todos,payload]
+    }),
     [FETCH_TODOS]: (state,{payload}) => ({
         state,
-        notes: [state.notes,payload]
+        notes: payload
     }),
     [REMOVE_TODO]: (state,{payload}) => ({...state,notes:state.notes.filter(note => note.id !==payload)}),
     [RENAME_TODO]: (state,{payload}) => ({...state,note:payload}),
