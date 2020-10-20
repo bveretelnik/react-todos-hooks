@@ -8,12 +8,6 @@ export default function TodoForm() {
     const firebase  = useContext(FirebaseContext)
 
 
-    // const inputRef = useRef(null)
-
-    // useEffect(() => {
-    //     inputRef.current.focus()
-    // })
-
     const handleChange = e => {
         setValue(e.target.value)
     }
@@ -43,7 +37,6 @@ export default function TodoForm() {
                 onChange={handleChange}
                 name='text'
                 className='todo-input'
-                // ref={inputRef}
                 />
                 <button onClick={handleSubmit} className='todo-button'>
                     Add todo

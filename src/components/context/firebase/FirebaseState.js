@@ -1,6 +1,6 @@
 import React, {useReducer} from 'react'
 import { FirebaseContext } from './firebaseContext'
-import { ADD_TODO, FETCH_TODOS, REMOVE_TODO, RENAME_TODO } from "../types"
+import { ADD_TODO, FETCH_TODOS, REMOVE_TODO, RENAME_TODO,COMPLETED_TODO } from "../types"
 import { firebaseReducer } from './firebaseReducer'
 import Axios from 'axios'
 
@@ -11,7 +11,8 @@ const url = process.env.REACT_APP_DB_URL
 export default function FirebaseState({children}) {
 
     const initialState = {
-        todos: []
+        todos: [],
+        isCompleted: false
     }
 
 const [state, dispatch] = useReducer(firebaseReducer, initialState)
@@ -34,7 +35,8 @@ const fetchTodos = async() =>{
 
     const addTodo = async text => {
         const todo = {
-            text
+            text,
+            isCompleted: false
         }
         try{
             const res = await Axios.post(`${url}/todos.json`,todo)
@@ -62,13 +64,20 @@ const fetchTodos = async() =>{
 
     }
 
-    const renameTodo = id => {
-        //.....
+    const renameTodo = async id => {
+        
+    }
+    const completeTodo =  id => {
+        
+        dispatch({
+            type:COMPLETED_TODO,
+            payload:id
+        })
     }
 
     return (
         <FirebaseContext.Provider value={{
-            fetchTodos, addTodo, removeTodo, renameTodo,
+            fetchTodos, addTodo, removeTodo, renameTodo,completeTodo,
             todos:state.todos
         }}>
             {children}

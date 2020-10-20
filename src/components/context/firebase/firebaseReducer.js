@@ -1,4 +1,4 @@
-import { ADD_TODO, FETCH_TODOS, REMOVE_TODO, RENAME_TODO } from "../types"
+import { ADD_TODO, COMPLETED_TODO, FETCH_TODOS, REMOVE_TODO, RENAME_TODO } from "../types"
 
 
 const handlers = {
@@ -14,7 +14,14 @@ const handlers = {
         ...state, 
         todos:state.todos.filter(todo => todo.id !== payload)
     }),
-    [RENAME_TODO]: (state,{payload}) => ({...state,todo:payload}),
+    [RENAME_TODO]: (state,{payload}) => ({
+        ...state,
+        todos:state.todos.map(todo=> (todo.id === payload ? todo.newText:todo.text))
+    }),
+    // [COMPLETED_TODO]: (state,{payload}) => ({
+    //     ...state,
+    //     todos:state.todos.map(todo => todo.id === payload ? todo.isCompleted = !isCompleted: todo.isCompleted)
+    // }),
     DEFAULT: state => state
 }
 

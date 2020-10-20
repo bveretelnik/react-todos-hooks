@@ -129,6 +129,9 @@
       rgba(17, 122, 255, 1) 100%
     );
   }
+  .todo-completed {
+    text-decoration: line-through;
+  }
   
   .icons {
     display: flex;
