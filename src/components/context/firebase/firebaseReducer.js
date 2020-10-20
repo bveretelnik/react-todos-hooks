@@ -8,10 +8,13 @@ const handlers = {
     }),
     [FETCH_TODOS]: (state,{payload}) => ({
         state,
-        notes: payload
+        todos: payload
     }),
-    [REMOVE_TODO]: (state,{payload}) => ({...state,notes:state.notes.filter(note => note.id !==payload)}),
-    [RENAME_TODO]: (state,{payload}) => ({...state,note:payload}),
+    [REMOVE_TODO]: (state,{payload}) => ({
+        ...state, 
+        todos:state.todos.filter(todo => todo.id !== payload)
+    }),
+    [RENAME_TODO]: (state,{payload}) => ({...state,todo:payload}),
     DEFAULT: state => state
 }
 

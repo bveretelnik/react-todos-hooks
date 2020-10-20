@@ -34,8 +34,7 @@ const fetchTodos = async() =>{
 
     const addTodo = async text => {
         const todo = {
-            text,
-            key: Math.floor(Math.random() * 10000)
+            text
         }
         try{
             const res = await Axios.post(`${url}/todos.json`,todo)
@@ -43,7 +42,7 @@ const fetchTodos = async() =>{
                 ...todo,
                 id:res.data.name
             }
-            console.log('addTodo', res.data)
+            console.log('addTodo', state.todos)
             dispatch({
                 type:ADD_TODO,
                 payload
@@ -55,10 +54,12 @@ const fetchTodos = async() =>{
 
     const removeTodo = async id => {
         await Axios.delete(`${url}/todos/${id}.json`)
+        console.log('delete',id)
         dispatch({
-            type:RENAME_TODO,
+            type:REMOVE_TODO,
             payload:id
         })
+
     }
 
     const renameTodo = id => {

@@ -1,34 +1,28 @@
-import React, { useState } from 'react';
-import TodoForm from './TodoForm';
+import React, { useContext,useEffect } from 'react';
 import { RiCloseCircleLine } from 'react-icons/ri';
 import { TiEdit } from 'react-icons/ti';
+import { FirebaseContext } from './context/firebase/firebaseContext';
 
-export default function Todo({todos,completeTodo,removeTodo,updateTodo}) {
+export default function Todo() {
 
-    const  [edit, setEdit] = useState({
-        id: null,
-        value: ''
-    })
 
-    const submitUpdate = value => {
-        updateTodo(edit.id, value)
-        setEdit({
-            id: null,
-            value: ''
-        })
-    }
+    const {todos, fetchTodos, removeTodo}  = useContext(FirebaseContext)
 
-    if(edit.id) {
-        return <TodoForm edit={edit} onSubmit={submitUpdate} />
-    }
+    useEffect(() => {
+        fetchTodos()
+        // eslint-disable-next-line
+    }, [])
+ 
+
+    
     
     return (
         todos.map((todo,index) => (
             <div 
-            className={todo.isComplete ? 'todo-row complete' : 'todo-row'}
+            className='todo-row'
             key={index}
             >
-                <div key={todo.id} onClick={()=> completeTodo(todo.id)}>
+                <div key={todo.index} onClick={()=>console.log('hi')}>
                     {todo.text}
                 </div>
                 <div className='icons'>
@@ -37,7 +31,7 @@ export default function Todo({todos,completeTodo,removeTodo,updateTodo}) {
                         className='delete-icon'
                     />
                     <TiEdit 
-                    onClick={()=> setImmediate({id:todo.id,value:todo.text})}
+                    onClick={()=>console.log('hell')}
                     className='edit-icon'
                     />
                 </div> 
