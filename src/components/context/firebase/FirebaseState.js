@@ -63,15 +63,8 @@ const fetchTodos = async() =>{
 
     } 
 
-    const renameTodo = (todoId,newValue) => {
-        if(!newValue.text || /^\s*$/.test(newValue.text)){
-            return
-        }
-        state.todos.map(item => (item.id ===todoId)? newValue : item)
-        dispatch({
-            type:RENAME_TODO,
-            payload: newValue
-        })
+    const renameTodo = () => {
+ 
     }
 
     const completeTodo =  id => {
@@ -93,7 +86,7 @@ const fetchTodos = async() =>{
 
     return (
         <FirebaseContext.Provider value={{
-            fetchTodos, addTodo, removeTodo, renameTodo,completeTodo,
+            fetchTodos, addTodo, removeTodo,completeTodo, renameTodo,
             todos:state.todos
         }}>
             {children}

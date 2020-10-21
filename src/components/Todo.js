@@ -22,7 +22,7 @@ export default function Todo() {
     const submitUpdate = value => {
         renameTodo(edit.id,value)
         setEdit({
-            id:null,
+            id: null,
             value:''
         })
     }

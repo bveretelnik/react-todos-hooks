@@ -15,7 +15,8 @@ const handlers = {
         todos:state.todos.filter(todo => todo.id !== payload)
     }),
     [RENAME_TODO]: (state,{payload}) => ({
-        ...state
+        ...state,
+        
     }),
     [COMPLETED_TODO]: state => ({
             ...state   

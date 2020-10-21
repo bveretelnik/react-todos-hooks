@@ -27,7 +27,19 @@ export default function TodoForm(props) {
           }
 }
 
-
+const updateTodo = (todoId, newValue) => {
+    if (!newValue.text || /^\s*$/.test(newValue.text)) {
+        return;
+      }
+      setValue(prev => prev.map(item => (item.id === todoId ? newValue : item)));
+      firebase.renameTodo(newValue.trim().then(()=>{
+          console.log('rename')
+      }).catch(()=> {
+          console.log('Some error')
+      }))
+      
+    };
+  
     return (
         <form className='todo-form'>
             {props.edit ? (
@@ -39,7 +51,7 @@ export default function TodoForm(props) {
                 name='text'
                 className='todo-input edit'
                 />
-                <button onClick={handleSubmit} className='todo-button edit'>
+                <button onClick={()=>updateTodo(props.edit.id,props.edit.value)} className='todo-button edit'>
                     Update
                 </button>
                 </>
