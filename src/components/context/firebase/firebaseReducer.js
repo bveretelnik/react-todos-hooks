@@ -15,11 +15,10 @@ const handlers = {
         todos:state.todos.filter(todo => todo.id !== payload)
     }),
     [RENAME_TODO]: (state,{payload}) => ({
-        ...state,
-        todos:state.todos.map(todo=> (todo.id === payload ? todo.newText:todo.text))
+        ...state
     }),
-    [COMPLETED_TODO]: (state,{payload}) => ({
-            ...state
+    [COMPLETED_TODO]: state => ({
+            ...state   
     }),
     DEFAULT: state => state
 }

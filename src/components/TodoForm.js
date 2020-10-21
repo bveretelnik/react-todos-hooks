@@ -1,9 +1,9 @@
 import React, { useState, useContext} from 'react'
 import { FirebaseContext } from './context/firebase/firebaseContext'
 
-export default function TodoForm() {
+export default function TodoForm(props) {
 
-    const [value, setValue] = useState('')
+    const [value, setValue] = useState(props.edit ? props.edit.value : '')
 
     const firebase  = useContext(FirebaseContext)
 
@@ -30,6 +30,20 @@ export default function TodoForm() {
 
     return (
         <form className='todo-form'>
+            {props.edit ? (
+                <>
+                <input
+                placeholder='Update your item'
+                value ={value}
+                onChange={handleChange}
+                name='text'
+                className='todo-input edit'
+                />
+                <button onClick={handleSubmit} className='todo-button edit'>
+                    Update
+                </button>
+                </>
+            ):(
                 <>
                 <input
                 placeholder='Add a todo'
@@ -42,6 +56,8 @@ export default function TodoForm() {
                     Add todo
                 </button>
                 </>
+            )}
+                
         </form>
     )
 }

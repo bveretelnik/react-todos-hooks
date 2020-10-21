@@ -63,9 +63,17 @@ const fetchTodos = async() =>{
 
     } 
 
-    const renameTodo = id => {
-        
+    const renameTodo = (todoId,newValue) => {
+        if(!newValue.text || /^\s*$/.test(newValue.text)){
+            return
+        }
+        state.todos.map(item => (item.id ===todoId)? newValue : item)
+        dispatch({
+            type:RENAME_TODO,
+            payload: newValue
+        })
     }
+
     const completeTodo =  id => {
         console.log('toggle',state.todos)
 
