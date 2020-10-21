@@ -11,8 +11,7 @@ const url = process.env.REACT_APP_DB_URL
 export default function FirebaseState({children}) {
 
     const initialState = {
-        todos: [],
-        isCompleted: false
+        todos: []
     }
 
 const [state, dispatch] = useReducer(firebaseReducer, initialState)
@@ -62,12 +61,21 @@ const fetchTodos = async() =>{
             payload:id
         })
 
-    }
+    } 
 
-    const renameTodo = async id => {
+    const renameTodo = id => {
         
     }
     const completeTodo =  id => {
+        console.log('toggle',state.todos)
+
+        state.todos =  state.todos.map(todo => {
+            if(todo.id === id) {
+             todo.isCompleted = !todo.isCompleted;
+            }
+            return todo
+        })
+
         
         dispatch({
             type:COMPLETED_TODO,

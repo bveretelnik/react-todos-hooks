@@ -18,10 +18,9 @@ const handlers = {
         ...state,
         todos:state.todos.map(todo=> (todo.id === payload ? todo.newText:todo.text))
     }),
-    // [COMPLETED_TODO]: (state,{payload}) => ({
-    //     ...state,
-    //     todos:state.todos.map(todo => todo.id === payload ? todo.isCompleted = !isCompleted: todo.isCompleted)
-    // }),
+    [COMPLETED_TODO]: (state,{payload}) => ({
+            ...state
+    }),
     DEFAULT: state => state
 }
 

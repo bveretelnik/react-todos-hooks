@@ -5,7 +5,7 @@ import { FirebaseContext } from './context/firebase/firebaseContext';
 
 export default function Todo() {
 
-    const {todos, fetchTodos, removeTodo}  = useContext(FirebaseContext)
+    const {todos, fetchTodos, removeTodo,completeTodo}  = useContext(FirebaseContext)
 
     useEffect(() => {
         fetchTodos()
@@ -13,16 +13,14 @@ export default function Todo() {
         
     }, [])
  
-    
-
-    const toggleTodoCompleteAtIndex = id => {
-        const temporaryTodos = todos.map(todo=>{
-            if(todo.id === id){
-                todo.isCompleted = !todo.isCompleted
-            }
-        })
-        return temporaryTodos
-    } 
+    // const toggleTodoCompleteAtIndex = id => {
+    //     return todos.map(todo=>{
+    //         if(todo.id === id){
+    //         todo.isCompleted = !todo.isCompleted
+    //         }
+    //     })
+        
+    // } 
 
     return (
         todos.map((todo,index) => (
@@ -30,7 +28,7 @@ export default function Todo() {
             className='todo-row'
             key={index}
             >
-                <div key={todo.index} onClick={()=>toggleTodoCompleteAtIndex(todo.id)} className={todo.isCompleted ? 'todo-completed': ''}>
+                <div key={todo.index} onClick={()=>completeTodo(todo.id)} className={todo.isCompleted ? 'todo-completed': ''}>
                     {todo.text}
                 </div>
                 <div className='icons'>
